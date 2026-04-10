@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nine Beauty - Luxury Hair</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(180deg, #050505, #111);
+      color: #fff;
+    }
+
+    /* 🔥 HEADER PREMIUM */
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(15px);
+      padding: 10px;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(212,175,55,0.2);
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .logo-area img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 2px solid #d4af37;
+      box-shadow: 0 0 15px rgba(212,175,55,0.4);
+      transition: 0.3s;
+    }
+
+    .logo-area img:hover {
+      transform: scale(1.1);
+    }
+
+    .logo-area h1 {
+      font-size: 1.5rem;
+      background: linear-gradient(45deg, #d4af37, #f1d97a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 1px;
+    }
+
+    nav {
+      text-align: center;
+      margin-top: 5px;
+    }
+
+    nav a {
+      margin: 0 10px;
+      color: #ccc;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #d4af37;
+    }
+
+    section {
+      padding: 70px 20px;
+      max-width: 1100px;
+      margin: auto;
+      text-align: center;
+    }
+
+    #hero h2 {
+      font-size: 2.4rem;
+      margin-bottom: 10px;
+    }
+
+    #hero p {
+      opacity: 0.7;
+    }
+
+    /* BOTÃO LUXO */
+    .btn {
+      background: linear-gradient(45deg, #d4af37, #f1d97a);
+      color: #000;
+      padding: 12px 25px;
+      border-radius: 30px;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: 0.3s;
+      box-shadow: 0 0 20px rgba(212,175,55,0.3);
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(212,175,55,0.6);
+    }
+
+    .services, .portfolio {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    /* CARDS PREMIUM */
+    .card {
+      background: linear-gradient(145deg, #111, #1a1a1a);
+      padding: 15px;
+      border-radius: 20px;
+      transition: 0.4s;
+      border: 1px solid rgba(212,175,55,0.1);
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(212,175,55,0.2);
+    }
+
+    .card img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      border-radius: 15px;
+    }
+
+    .price {
+      color: #f1d97a;
+      margin-top: 10px;
+    }
+
+    .badge {
+      background: #d4af37;
+      color: #000;
+      padding: 5px 10px;
+      border-radius: 10px;
+      font-size: 0.7rem;
+      margin-top: 10px;
+      display: inline-block;
+    }
+
+    input {
+      width:100%;
+      padding:12px;
+      margin:10px 0;
+      border-radius:10px;
+      border:none;
+      background:#1a1a1a;
+      color:#fff;
+    }
+
+    footer {
+      background:#000;
+      padding:20px;
+      margin-top:40px;
+      border-top: 1px solid rgba(212,175,55,0.2);
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #25D366;
+      padding: 15px;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+
+    .urgencia {
+      color:#d4af37;
+      margin-top:10px;
+    }
+
+    /* ANIMAÇÃO SUAVE */
+    .reveal {
+      opacity:0;
+      transform:translateY(40px);
+      transition:1s;
+    }
+
+    .reveal.active {
+      opacity:1;
+      transform:translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo-area">
+    <img src="./images/logobeautynine.jpg">
+    <h1>Nine Beauty</h1>
+  </div>
+
+  <nav>
+    <a href="#servicos">Serviços</a>
+    <a href="#portfolio">Trabalhos</a>
+    <a href="#agendamento">Agendar</a>
+  </nav>
+</header>
+
+<section id="hero" class="reveal">
+  <h2>Luxo, estilo e transformação</h2>
+  <p>Especialista em aplicação de cabelos premium</p>
+  <p class="urgencia">🔥 Últimos horários disponíveis</p>
+  <button class="btn" onclick="scrollToAgendamento()">Agendar agora</button>
+</section>
+
+<section id="servicos" class="reveal">
+  <h2>Serviços</h2>
+
+  <div class="services">
+    <div class="card">
+      <h3>Aplicação de Cabelos</h3>
+      <p>Técnicas premium e durabilidade</p>
+      <div class="price">A partir de R$150</div>
+      <div class="badge">Top serviço</div>
+    </div>
+
+    <div class="card">
+      <h3>Tranças & Estilo</h3>
+      <p>Visual moderno e personalizado</p>
+      <div class="price">A partir de R$50</div>
+    </div>
+  </div>
+</section>
+
+<section id="portfolio" class="reveal">
+  <h2>Resultados reais</h2>
+
+  <div class="portfolio">
+    <div class="card"><img src="./images/1.jpeg"></div>
+    <div class="card"><img src="./images/2.jpeg"></div>
+    <div class="card"><img src="./images/3.jpeg"></div>
+  </div>
+</section>
+
+<section id="agendamento" class="reveal">
+  <h2>Agendamento Online</h2>
+
+  <form onsubmit="enviarWhats(event)">
+    <input type="text" id="nome" placeholder="Seu nome" required>
+    <input type="text" id="servico" placeholder="Serviço desejado" required>
+    <input type="date" id="data" required>
+    <input type="time" id="hora" required>
+
+    <button class="btn" type="submit">Agendar via WhatsApp</button>
+  </form>
+</section>
+
+<footer>
+  <p>© 2026 Nine Beauty</p>
+</footer>
+
+<div class="whatsapp-float" onclick="whatsapp()">💬</div>
+
+<script>
+function scrollToAgendamento(){
+  document.getElementById("agendamento").scrollIntoView({ behavior: "smooth" });
+}
+
+function whatsapp(){
+  window.open("https://wa.me/55SEUNUMERO?text=Oi,%20vim%20pelo%20site", "_blank");
+}
+
+function enviarWhats(e){
+  e.preventDefault();
+  const nome = nome.value;
+  const servico = servico.value;
+  const data = data.value;
+  const hora = hora.value;
+
+  const msg = `Oi, sou ${nome}%0AQuero ${servico}%0A${data} às ${hora}`;
+  window.open(`https://wa.me/55SEUNUMERO?text=${msg}`);
+}
+
+window.addEventListener('scroll', () => {
+  document.querySelectorAll('.reveal').forEach(el => {
+    if(el.getBoundingClientRect().top < window.innerHeight - 100){
+      el.classList.add('active');
+    }
+  });
+});
+</script>
+
+</body>
+</html>
