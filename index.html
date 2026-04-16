@@ -1,764 +1,323 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- SEO Básico -->
-    <meta name="description" content="Nine Beauty - Especialista em tranças e cuidados com cabelos. Agende seu horário!">
-    <meta name="keywords" content="tranças, beleza, cabelo, nine beauty, salão">
-    
-    <title>Nine Beauty | Tranças & Beleza</title>
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome para ícones melhores -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        html {
-            scroll-behavior: smooth;
-        }
+<meta name="description" content="Nine Beauty - Especialista em extensão de cabelos em Florianópolis.">
+<title>Nine Beauty | Extensão de Cabelos</title>
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: #0a0a0a;
-            color: #fff;
-            line-height: 1.6;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-        /* Header Melhorado */
-        header {
-            position: fixed;
-            width: 100%;
-            top: 0;
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 15px 5%;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(230, 199, 161, 0.1);
-        }
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Poppins';background:#0a0a0a;color:#fff;}
 
-        .logo-area {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+header{
+position:fixed;width:100%;top:0;
+background:rgba(0,0,0,0.9);
+padding:15px 5%;
+display:flex;justify-content:space-between;
+z-index:1000;
+}
 
-        .logo-area img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: 2px solid #e6c7a1;
-            object-fit: cover;
-        }
+.logo-area{display:flex;align-items:center;gap:10px;}
+.logo-area img{width:45px;height:45px;border-radius:50%;}
+.logo-area h1{color:#e6c7a1;font-family:'Playfair Display';}
 
-        .logo-area h1 {
-            font-family: 'Playfair Display', serif;
-            color: #e6c7a1;
-            font-size: 1.5rem;
-        }
+nav{display:flex;gap:20px;}
+nav a{color:#fff;text-decoration:none;font-size:0.9rem;}
 
-        nav {
-            display: flex;
-            gap: 30px;
-        }
+#hero{height:100vh;position:relative;}
+.slide{
+position:absolute;width:100%;height:100%;
+background-size:cover;background-position:center;
+opacity:0;transition:1s;
+}
+.slide.active{opacity:1;}
 
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: 400;
-            transition: color 0.3s;
-            position: relative;
-        }
+.overlay{
+position:absolute;width:100%;height:100%;
+background:rgba(0,0,0,0.6);
+}
 
-        nav a:hover {
-            color: #e6c7a1;
-        }
+.hero-content{
+position:absolute;top:50%;left:50%;
+transform:translate(-50%,-50%);
+text-align:center;width:90%;
+}
 
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #e6c7a1;
-            transition: width 0.3s;
-        }
+.hero-content h2{
+font-size:2.5rem;
+font-family:'Playfair Display';
+}
 
-        nav a:hover::after {
-            width: 100%;
-        }
+.hero-content p{color:#ccc;margin-top:10px;}
 
-        /* Menu Mobile */
-        .menu-toggle {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #e6c7a1;
-        }
+.btn{
+background:#e6c7a1;color:#000;
+padding:14px 25px;
+border-radius:30px;
+margin-top:20px;
+cursor:pointer;
+border:none;
+font-weight:600;
+transition:0.3s;
+}
+.btn:hover{transform:scale(1.05);}
 
-        /* Hero Section Corrigida */
-        #hero {
-            height: 100vh;
-            position: relative;
-            overflow: hidden;
-            margin-top: 0;
-        }
+section{
+padding:90px 5%;
+max-width:1100px;
+margin:auto;
+}
 
-        .slider {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
+h2{
+color:#e6c7a1;
+text-align:center;
+margin-bottom:20px;
+}
 
-        .slide {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            opacity: 0;
-            transition: opacity 1.5s ease-in-out;
-        }
+.services-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
 
-        .slide.active {
-            opacity: 1;
-        }
+.service-card{
+background:#111;
+padding:25px;
+border-radius:12px;
+text-align:center;
+transition:0.3s;
+}
+.service-card:hover{
+transform:translateY(-5px);
+box-shadow:0 10px 20px rgba(230,199,161,0.2);
+}
 
-        .overlay {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.8));
-            z-index: 1;
-        }
+/* PORTFÓLIO */
+.portfolio-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+margin-top:30px;
+}
 
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            width: 90%;
-            max-width: 800px;
-        }
+.portfolio-item{
+overflow:hidden;
+border-radius:12px;
+}
 
-        .hero-content h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            margin-bottom: 20px;
-            color: #fff;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
+.portfolio-item img{
+width:100%;
+height:300px;
+object-fit:cover;
+display:block;
+transition:0.4s;
+}
 
-        .hero-content p {
-            font-size: clamp(1rem, 3vw, 1.2rem);
-            margin-bottom: 15px;
-        }
+.portfolio-item:hover img{
+transform:scale(1.1);
+}
 
-        .urgencia {
-            color: #e6c7a1;
-            font-weight: 600;
-            animation: pulse 2s infinite;
-        }
+/* FORM */
+form{
+max-width:500px;
+margin:auto;
+display:flex;
+flex-direction:column;
+gap:12px;
+}
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
+input,select,textarea{
+padding:12px;
+border:none;
+border-radius:6px;
+background:#111;
+color:#fff;
+}
 
-        .btn {
-            background: linear-gradient(135deg, #e6c7a1, #d4af7a);
-            color: #0a0a0a;
-            padding: 15px 35px;
-            border-radius: 50px;
-            border: none;
-            cursor: pointer;
-            font-size: 1.1rem;
-            font-weight: 600;
-            transition: transform 0.3s, box-shadow 0.3s;
-            margin-top: 30px;
-        }
+/* BOTÃO WHATS */
+.whatsapp-float{
+position:fixed;
+bottom:25px;
+right:25px;
+background:#25D366;
+width:60px;height:60px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+z-index:999;
+}
+.whatsapp-float i{
+color:#fff;font-size:28px;
+}
 
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(230, 199, 161, 0.3);
-        }
-
-        /* Seções */
-        section {
-            padding: 80px 5%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        section h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            color: #e6c7a1;
-            margin-bottom: 50px;
-            text-align: center;
-            position: relative;
-        }
-
-        section h2::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #e6c7a1, transparent);
-        }
-
-        /* Cards de Serviços */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .service-card {
-            background: linear-gradient(145deg, #1a1a1a, #111);
-            padding: 40px 30px;
-            border-radius: 20px;
-            text-align: center;
-            transition: transform 0.3s;
-            border: 1px solid rgba(230, 199, 161, 0.1);
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(230, 199, 161, 0.3);
-        }
-
-        .service-card i {
-            font-size: 3rem;
-            color: #e6c7a1;
-            margin-bottom: 20px;
-        }
-
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: #e6c7a1;
-        }
-
-        .price {
-            font-size: 1.3rem;
-            color: #e6c7a1;
-            font-weight: 600;
-            margin-top: 20px;
-        }
-
-        /* Portfolio Grid */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-
-        .portfolio-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 15px;
-            cursor: pointer;
-            aspect-ratio: 1;
-        }
-
-        .portfolio-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-
-        .portfolio-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .portfolio-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            padding: 20px;
-            transform: translateY(100%);
-            transition: transform 0.3s;
-        }
-
-        .portfolio-item:hover .portfolio-overlay {
-            transform: translateY(0);
-        }
-
-        /* Formulário Melhorado */
-        #agendamento {
-            background: linear-gradient(145deg, #111, #0a0a0a);
-            border-radius: 30px;
-            margin-top: 50px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        input, select, textarea {
-            width: 100%;
-            padding: 15px;
-            border-radius: 10px;
-            border: 1px solid rgba(230, 199, 161, 0.2);
-            background: #1a1a1a;
-            color: #fff;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: #e6c7a1;
-        }
-
-        /* WhatsApp Float */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: #25D366;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.3);
-            transition: transform 0.3s;
-            z-index: 1000;
-        }
-
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-        }
-
-        .whatsapp-float i {
-            font-size: 2rem;
-            color: #fff;
-        }
-
-        /* Footer */
-        footer {
-            background: #000;
-            padding: 30px 5%;
-            text-align: center;
-            border-top: 1px solid rgba(230, 199, 161, 0.1);
-        }
-
-        .social-links {
-            margin-bottom: 20px;
-        }
-
-        .social-links a {
-            color: #e6c7a1;
-            margin: 0 10px;
-            font-size: 1.5rem;
-            transition: color 0.3s;
-        }
-
-        .social-links a:hover {
-            color: #fff;
-        }
-
-        /* Responsivo */
-        @media (max-width: 768px) {
-            header {
-                padding: 15px 20px;
-            }
-
-            nav {
-                display: none;
-                position: absolute;
-                top: 80px;
-                left: 0;
-                right: 0;
-                background: rgba(10, 10, 10, 0.98);
-                flex-direction: column;
-                padding: 20px;
-                text-align: center;
-            }
-
-            nav.active {
-                display: flex;
-            }
-
-            .menu-toggle {
-                display: block;
-            }
-
-            section h2 {
-                font-size: 2rem;
-            }
-        }
-
-        /* Loading States */
-        .loading {
-            opacity: 0.7;
-            pointer-events: none;
-        }
-
-        /* Animações de entrada */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .service-card, .portfolio-item {
-            animation: fadeInUp 0.6s ease-out forwards;
-        }
-    </style>
+footer{
+text-align:center;
+padding:30px;
+background:#000;
+color:#888;
+}
+</style>
 </head>
+
 <body>
 
 <header>
-    <div class="logo-area">
-        <img src="./images/logobeautynine.jpg" alt="Nine Beauty Logo">
-        <h1>Nine Beauty</h1>
-    </div>
-    
-    <div class="menu-toggle" onclick="toggleMenu()">
-        <i class="fas fa-bars"></i>
-    </div>
-    
-    <nav id="navMenu">
-        <a href="#hero">Home</a>
-        <a href="#servicos">Serviços</a>
-        <a href="#portfolio">Portfólio</a>
-        <a href="#agendamento">Agendar</a>
-    </nav>
+<div class="logo-area">
+<img src="./images/logobeautynine.jpg">
+<h1>Nine Beauty</h1>
+</div>
+
+<nav>
+<a href="#hero">Home</a>
+<a href="#servicos">Serviços</a>
+<a href="#portfolio">Resultados</a>
+<a href="#agendamento">Agendar</a>
+</nav>
 </header>
 
 <main>
-    <!-- Hero Section -->
-    <section id="hero">
-        <div class="slider">
-            <div class="slide active" style="background-image: url('./images/1.jpeg')"></div>
-            <div class="slide" style="background-image: url('./images/2.jpeg')"></div>
-            <div class="slide" style="background-image: url('./images/3.jpeg')"></div>
-        </div>
-        <div class="overlay"></div>
-        
-        <div class="hero-content">
-            <h2>Realce sua Beleza Natural</h2>
-            <p>Especialista em tranças e cuidados para todos os tipos de cabelo</p>
-            <p class="urgencia">
-                <i class="fas fa-calendar-check"></i> 
-                Agenda com vagas limitadas esta semana!
-            </p>
-            <button class="btn" onclick="scrollToAgendamento()">
-                <i class="fas fa-whatsapp"></i> Agendar Agora
-            </button>
-        </div>
-    </section>
 
-    <!-- Serviços -->
-    <section id="servicos">
-        <h2>Nossos Serviços</h2>
-        <div class="services-grid">
-            <div class="service-card">
-                <i class="fas fa-cut"></i>
-                <h3>Tranças</h3>
-                <p>Box braids, nagô, twists e muito mais. Estilos personalizados para você.</p>
-                <div class="price">A partir de R$ 50</div>
-            </div>
-            
-            <div class="service-card">
-                <i class="fas fa-magic"></i>
-                <h3>Escova & Finalização</h3>
-                <p>Brilho intenso, alinhamento perfeito e hidratação profunda.</p>
-                <div class="price">A partir de R$ 40</div>
-            </div>
-            
-            <div class="service-card">
-                <i class="fas fa-spa"></i>
-                <h3>Tratamentos</h3>
-                <p>Hidratação, reconstrução e cuidados especiais para seus fios.</p>
-                <div class="price">A partir de R$ 60</div>
-            </div>
-        </div>
-    </section>
+<section id="hero">
+<div class="slide active" style="background-image:url('./images/1.jpeg')"></div>
+<div class="slide" style="background-image:url('./images/2.jpeg')"></div>
+<div class="slide" style="background-image:url('./images/3.jpeg')"></div>
+<div class="overlay"></div>
 
-    <!-- Portfolio -->
-    <section id="portfolio">
-        <h2>Trabalhos Realizados</h2>
-        <div class="portfolio-grid">
-            <div class="portfolio-item">
-                <img src="./images/1.jpeg" alt="Trança 1">
-                <div class="portfolio-overlay">
-                    <h3>Box Braids</h3>
-                    <p>Tranças longas</p>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <img src="./images/2.jpeg" alt="Trança 2">
-                <div class="portfolio-overlay">
-                    <h3>Nagô</h3>
-                    <p>Estilo geométrico</p>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <img src="./images/3.jpeg" alt="Trança 3">
-                <div class="portfolio-overlay">
-                    <h3>Twists</h3>
-                    <p>Estilo moderno</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<div class="hero-content">
+<h2>Extensão de Cabelos Premium</h2>
+<p>Resultado natural, volume e acabamento profissional.</p>
+<p style="color:#e6c7a1;">Agenda limitada essa semana</p>
 
-    <!-- Agendamento -->
-    <section id="agendamento">
-        <h2>Agende seu Horário</h2>
-        <form id="agendamentoForm" onsubmit="enviarWhatsApp(event)">
-            <div class="form-group">
-                <input type="text" id="nome" placeholder="Seu nome completo" required>
-            </div>
-            
-            <div class="form-group">
-                <select id="tipo" required>
-                    <option value="">Selecione seu tipo de cabelo</option>
-                    <option value="Liso">Liso</option>
-                    <option value="Ondulado">Ondulado</option>
-                    <option value="Cacheado">Cacheado</option>
-                    <option value="Crespo">Crespo</option>
-                </select>
-            </div>
-            
-            <div class="form-group">
-                <select id="servico" required>
-                    <option value="">Selecione o serviço</option>
-                    <option value="Tranças">Tranças</option>
-                    <option value="Escova">Escova</option>
-                    <option value="Tratamento">Tratamento</option>
-                    <option value="Outro">Outro</option>
-                </select>
-            </div>
-            
-            <div class="form-group">
-                <input type="date" id="data" required min="">
-            </div>
-            
-            <div class="form-group">
-                <input type="time" id="hora" required>
-            </div>
-            
-            <div class="form-group">
-                <textarea id="observacoes" placeholder="Observações (opcional)" rows="3"></textarea>
-            </div>
-            
-            <button type="submit" class="btn">
-                <i class="fab fa-whatsapp"></i> Agendar pelo WhatsApp
-            </button>
-        </form>
-    </section>
+<button class="btn" onclick="document.getElementById('agendamento').scrollIntoView()">
+Agendar agora
+</button>
+</div>
+</section>
+
+<section id="servicos">
+<h2>Serviços</h2>
+
+<div class="services-grid">
+<div class="service-card"><h3>Extensão de Cabelos</h3></div>
+<div class="service-card"><h3>Tranças</h3></div>
+<div class="service-card"><h3>Hidratação</h3></div>
+<div class="service-card"><h3>Coloração</h3></div>
+<div class="service-card"><h3>Infantil</h3></div>
+</div>
+</section>
+
+<section id="portfolio">
+<h2>Resultados</h2>
+<div class="portfolio-grid">
+<div class="portfolio-item"><img src="./images/1.jpeg"></div>
+<div class="portfolio-item"><img src="./images/2.jpeg"></div>
+<div class="portfolio-item"><img src="./images/3.jpeg"></div>
+</div>
+</section>
+
+<section id="agendamento">
+<h2>Agendar</h2>
+
+<form onsubmit="enviar(event)">
+<input type="text" id="nome" placeholder="Seu nome" required>
+<input type="tel" id="telefone" placeholder="Seu WhatsApp" required>
+
+<select id="servico" required>
+<option value="">Selecione o serviço</option>
+<option>Extensão de Cabelos</option>
+<option>Tranças</option>
+<option>Hidratação</option>
+<option>Coloração</option>
+<option>Infantil</option>
+</select>
+
+<select id="tipo">
+<option value="">Tipo de cabelo</option>
+<option>Liso</option>
+<option>Ondulado</option>
+<option>Cacheado</option>
+<option>Crespo</option>
+</select>
+
+<select id="tamanho">
+<option value="">Tamanho do cabelo</option>
+<option>Curto</option>
+<option>Médio</option>
+<option>Longo</option>
+</select>
+
+<input type="date" id="data" required>
+<input type="time" id="hora" required>
+
+<textarea id="obs" placeholder="Observações (opcional)"></textarea>
+
+<button class="btn">Agendar pelo WhatsApp</button>
+</form>
+</section>
+
 </main>
 
 <footer>
-    <div class="social-links">
-        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
-        <a href="https://wa.me/5548991221330" target="_blank"><i class="fab fa-whatsapp"></i></a>
-    </div>
-    <p>© 2026 Nine Beauty - Todos os direitos reservados</p>
-    <p style="margin-top: 10px; font-size: 0.9rem; color: #888;">
-        📍 Florianópolis, SC | ✨ Realçando sua beleza natural
-    </p>
+<p>© 2026 Nine Beauty</p>
 </footer>
 
-<!-- WhatsApp Float -->
-<div class="whatsapp-float" onclick="abrirWhatsApp()">
-    <i class="fab fa-whatsapp"></i>
+<div class="whatsapp-float" onclick="abrirWpp()">
+<i class="fab fa-whatsapp"></i>
 </div>
 
 <script>
-// Configurações
-const WHATSAPP_NUMBER = "5548991221330";
-const INSTAGRAM_URL = "https://instagram.com/ninebeauty"; // Ajuste com o @ correto
+const number = "5548991221330";
 
-// Menu Mobile
-function toggleMenu() {
-    const nav = document.getElementById('navMenu');
-    nav.classList.toggle('active');
+function enviar(e){
+e.preventDefault();
+
+const nome = document.getElementById("nome").value.trim();
+const telefone = document.getElementById("telefone").value.trim();
+const servico = document.getElementById("servico").value;
+const tipo = document.getElementById("tipo").value;
+const tamanho = document.getElementById("tamanho").value;
+const data = document.getElementById("data").value;
+const hora = document.getElementById("hora").value;
+const obs = document.getElementById("obs").value;
+
+if(!nome || !telefone || !servico || !data || !hora){
+alert("Preencha os campos obrigatórios!");
+return;
 }
 
-// Fechar menu ao clicar em um link
-document.querySelectorAll('nav a').forEach(link => {
-    link.addEventListener('click', () => {
-        document.getElementById('navMenu').classList.remove('active');
-    });
-});
+let msg = `Olá! Meu nome é ${nome}%0A`;
+msg += `Telefone: ${telefone}%0A`;
+msg += `Serviço: ${servico}%0A`;
 
-// Scroll suave para agendamento
-function scrollToAgendamento() {
-    document.getElementById('agendamento').scrollIntoView({ 
-        behavior: 'smooth' 
-    });
+if(tipo) msg += `Tipo de cabelo: ${tipo}%0A`;
+if(tamanho) msg += `Tamanho: ${tamanho}%0A`;
+
+msg += `Data: ${data}%0AHorário: ${hora}%0A`;
+
+if(obs) msg += `Obs: ${obs}`;
+
+window.open(`https://wa.me/${number}?text=${msg}`, '_blank');
 }
 
-// Abrir WhatsApp genérico
-function abrirWhatsApp() {
-    const mensagem = "Olá! Vim pelo site da Nine Beauty e gostaria de mais informações.";
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(mensagem)}`);
+function abrirWpp(){
+window.open(`https://wa.me/${number}`, '_blank');
 }
 
-// Enviar agendamento pelo WhatsApp
-function enviarWhatsApp(event) {
-    event.preventDefault();
-    
-    // Pegar valores do formulário
-    const nome = document.getElementById('nome').value.trim();
-    const tipo = document.getElementById('tipo').value;
-    const servico = document.getElementById('servico').value;
-    const data = document.getElementById('data').value;
-    const hora = document.getElementById('hora').value;
-    const observacoes = document.getElementById('observacoes').value.trim();
-    
-    // Validações básicas
-    if (!nome || !tipo || !servico || !data || !hora) {
-        alert('Por favor, preencha todos os campos obrigatórios!');
-        return;
-    }
-    
-    // Validar data (não permitir datas passadas)
-    const dataSelecionada = new Date(data + 'T' + hora);
-    const agora = new Date();
-    
-    if (dataSelecionada < agora) {
-        alert('Por favor, selecione uma data e hora futuras!');
-        return;
-    }
-    
-    // Formatar data para exibição
-    const dataFormatada = new Date(data + 'T' + hora).toLocaleDateString('pt-BR', {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-    });
-    
-    // Criar mensagem formatada
-    let mensagem = `🌟 *NOVO AGENDAMENTO - NINE BEAUTY* 🌟\n\n`;
-    mensagem += `👤 *Cliente:* ${nome}\n`;
-    mensagem += `💇 *Tipo de cabelo:* ${tipo}\n`;
-    mensagem += `✨ *Serviço:* ${servico}\n`;
-    mensagem += `📅 *Data:* ${dataFormatada}\n`;
-    mensagem += `🕐 *Horário:* ${hora}\n`;
-    
-    if (observacoes) {
-        mensagem += `📝 *Observações:* ${observacoes}\n`;
-    }
-    
-    mensagem += `\n✅ *Status:* Aguardando confirmação`;
-    
-    // Abrir WhatsApp com a mensagem
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(mensagem)}`);
-    
-    // Feedback visual
-    const btn = event.target.querySelector('button[type="submit"]');
-    btn.innerHTML = '<i class="fas fa-check"></i> Redirecionando...';
-    
-    setTimeout(() => {
-        btn.innerHTML = '<i class="fab fa-whatsapp"></i> Agendar pelo WhatsApp';
-    }, 2000);
-    
-    // Limpar formulário (opcional)
-    // document.getElementById('agendamentoForm').reset();
-}
+let slides = document.querySelectorAll('.slide');
+let i = 0;
 
-// Slider de imagens
-let currentSlide = 0;
-const slides = document.querySelectorAll('.slide');
-const totalSlides = slides.length;
-
-function nextSlide() {
-    slides[currentSlide].classList.remove('active');
-    currentSlide = (currentSlide + 1) % totalSlides;
-    slides[currentSlide].classList.add('active');
-}
-
-// Trocar slide a cada 4 segundos
-setInterval(nextSlide, 4000);
-
-// Configurar data mínima no input de data
-const dataInput = document.getElementById('data');
-const hoje = new Date().toISOString().split('T')[0];
-dataInput.min = hoje;
-
-// Adicionar links sociais
-document.querySelectorAll('.social-links a').forEach(link => {
-    if (link.querySelector('.fa-instagram')) {
-        link.href = INSTAGRAM_URL;
-    }
-});
-
-// Animação de entrada dos elementos
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-
-// Observar cards e itens do portfolio
-document.querySelectorAll('.service-card, .portfolio-item').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-    el.style.transition = 'opacity 0.6s, transform 0.6s';
-    observer.observe(el);
-});
-
-// Smooth scroll para todos os links internos
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
-
-console.log('✨ Nine Beauty - Site carregado com sucesso!');
+setInterval(()=>{
+slides[i].classList.remove('active');
+i = (i+1)%slides.length;
+slides[i].classList.add('active');
+},4000);
 </script>
 
 </body>
